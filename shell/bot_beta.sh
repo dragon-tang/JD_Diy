@@ -11,7 +11,7 @@ dir_repo=$root/repo
 file_bot=$root/config/bot.json
 file_botset=$root/config/botset.json
 file_diybotset=$root/config/diybotset.json
-url="https://github.com/chiupam/JD_Diy.git"
+url="https://github.com/dragon-tang/JD_Diy.git"
 repo_path=$dir_repo/diybot
 
 git_pull() {

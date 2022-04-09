@@ -28,13 +28,13 @@ async def my_chartinfo(event):
         if res['code'] != 200:
             await notification.delete()
             msg = await user.send_message(event.chat_id,f'something wrong,I\'m sorry\n{str(res["data"])}')
-            await asyncio.sleep(15)
+            await asyncio.sleep(10)
             await msg.delete()
         else:
             creat_chart(res['data'][3], f'账号{str(text)}',res['data'][0], res['data'][1], res['data'][2][1:])
             await notification.delete()
             msg = await user.send_message(event.chat_id, f'您的账号{text}收支情况', file=BEAN_IMG)
-            await asyncio.sleep(15)
+            await asyncio.sleep(10)
             await msg.delete()
     
 

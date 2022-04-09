@@ -44,13 +44,13 @@ async def bot_bean(event):
         creat_bean_counts(BEAN_OUT_FILE)
         await notification.delete()
         msg = await user.send_message(event.chat_id, '您的近日支出情况', file=BEAN_IMG)
-        await asyncio.sleep(15)
+        await asyncio.sleep(10)
         await msg.delete()
         
     elif not V4 and (text == 'in' or text == 'out' or text is None):
         await notification.delete()
         msg = await user.send_message(event.chat_id,'QL暂不支持使用bean in、out ,请使用/bean n n为数字')
-        await asyncio.sleep(15)
+        await asyncio.sleep(10)
         await msg.delete()
         
     elif text and int(text):
@@ -58,13 +58,13 @@ async def bot_bean(event):
         if res['code'] != 200:
             await notification.delete()
             await user.send_message(event.chat_id, f'something wrong,I\'m sorry\n{str(res["data"])}')
-            await asyncio.sleep(15)
+            await asyncio.sleep(10)
             await msg.delete()
         else:
             creat_bean_count(res['data'][3], res['data'][0], res['data'][1], res['data'][2][1:])
             await notification.delete()
             msg = await user.send_message(event.chat_id, f'您的账号{text}收支情况', file=BEAN_IMG)
-            await asyncio.sleep(15)
+            await asyncio.sleep(10)
             await msg.delete()
     elif not text:
         subprocess.check_output(
@@ -72,12 +72,12 @@ async def bot_bean(event):
         creat_bean_counts(BEAN_TOTAL_FILE)
         await notification.delete()
         msg = await user.send_message(event.chat_id, '您的总京豆情况', file=BEAN_IMG)
-        await asyncio.sleep(15)
+        await asyncio.sleep(10)
         await msg.delete()
     else:
         await notification.delete()
         msg = await user.send_message(event.chat_id, '青龙暂仅支持/bean n n为账号数字')
-        await asyncio.sleep(15)
+        await asyncio.sleep(10)
         await msg.delete()
 
 

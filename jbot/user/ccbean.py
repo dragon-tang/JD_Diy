@@ -7,7 +7,7 @@ from ..diy.utils import read, write
 import asyncio
 import re
 
-@user.on(events.NewMessage(pattern=r'^-cb', outgoing=True))
+@user.on(events.NewMessage(pattern=r'^-h', outgoing=True))
 async def CCBeanInfo(event):
     msg_text= event.raw_text.split(' ')
     if isinstance(msg_text, list) and len(msg_text) == 2:
@@ -16,7 +16,7 @@ async def CCBeanInfo(event):
         text = '1'  
     
     if text==None:
-        msg = await event.edit('请指定要查询的账号,格式: -cb 1')
+        msg = await event.edit('请指定要查询的账号,格式: -h 1')
         await asyncio.sleep(5)
         await msg.delete()
         return    
@@ -55,7 +55,11 @@ async def CCBeanInfo(event):
                     
     if strReturn:
         await msg.delete()
-        await user.send_message(event.chat_id, strReturn)
+        notification = await user.send_message(event.chat_id, strReturn)
+        await asyncio.sleep(10)
+        await notification.delete()
     else:
         await msg.delete()
-        await user.send_message(event.chat_id,'查询失败!')
+        notification = await user.send_message(event.chat_id,'查询失败!')
+        await asyncio.sleep(10)
+        await notification.delete()
